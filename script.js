@@ -9,6 +9,7 @@ let gridLinesOn = DEFAULT_GRID_LINES_ON;
 let penColor = DEFAULT_PEN_COLOR;
 let gridColor = DEFAULT_GRID_COLOR;
 let currentGridSize = DEFAULT_GRID_SIZE;
+let mode = "custom";//rainbow, grayscale, snake
 
 const body = document.querySelector('body');
 const gridContainer = document.createElement('div');
@@ -54,17 +55,25 @@ function createSquares(currentSize){
         if(gridLinesOn) {square.style.border = BORDER_STYLE;}
         gridContainer.appendChild(square);
             square.addEventListener("mouseenter", (e) => {
-            // highlight the mouseenter target
-             e.target.style.backgroundColor = penColor;
-            
-            // reset the color after a short delay (for snake)
-            // setTimeout(function() {
-            // e.target.style.backgroundColor = "";
-            // }, 500);
+            switch(mode){
+                case("custom"):
+                    e.target.style.backgroundColor = penColor;
+                    break;
+                case("snake"):
+                    e.target.style.backgroundColor = penColor;
+                    setTimeout(function() {
+                    e.target.style.backgroundColor = "";
+                    }, 500);
+            }
+
         }, false);
     }
 }
 
+
+function rainbowColor(){
+
+}
 
 function deleteSquares(){
     gridContainer.innerHTML = "";
