@@ -1,11 +1,26 @@
 const squareNum = 256;
-const border = "0.1px groove black";
+const borderStyle = "0.1px groove black";
 let withBorder = true;
-const backgroundCol = "";
-const squareCol = "";
+let squareCol = "black";
+let backgroundCol = "";
 
 const body = document.querySelector('body');
 const container = document.createElement('div');
+
+//color picker
+const colorPicker = document.querySelector("#square-color");
+colorPicker.addEventListener("change", (e) => {
+    squareCol = e.target.value;
+}, false);
+
+// //grid lines on/off
+// const gridLines = document.querySelector("#checkbox");
+// gridLines.addEventListener("change", (e) => {
+//     if(e.target.checked) 
+//         withBorder === true;
+//     else 
+//         withBorder === false;
+// })
 
 //create the container that stores the squares
 container.classList.add("grid-container");
@@ -16,11 +31,12 @@ for(i=0; i<squareNum; i++){
     const square = document.createElement('div');
     square.classList.add("square"+i);
     square.style.cssText = "display:flex; box-sizing:border-box; width:50px; height:50px; margin:0.5px;"
-    if(withBorder) square.style.border = border;
+    if(withBorder) {square.style.border = borderStyle;}
     container.appendChild(square);
+
     square.addEventListener("mouseenter", (e) => {
         // highlight the mouseenter target
-        e.target.style.backgroundColor = "purple";
+        e.target.style.backgroundColor = squareCol;
         
         // // reset the color after a short delay (for snake)
         // setTimeout(function() {
