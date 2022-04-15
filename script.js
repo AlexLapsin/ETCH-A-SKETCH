@@ -3,9 +3,9 @@ const BORDER_STYLE = "0.01px solid";
 const DEFAULT_GRID_SIZE = 16;
 const DEFAULT_PEN_COLOR = "black";
 const DEFAULT_GRID_COLOR = "";
-const DEFAULT_GRID_LINES_ON = true;
+const DEFAULT_GRID_LINES_ON = new Boolean(true);
 
-let GridLinesOn = DEFAULT_GRID_LINES_ON;
+let gridLinesOn = DEFAULT_GRID_LINES_ON;
 let penColor = DEFAULT_PEN_COLOR;
 let gridColor = DEFAULT_GRID_COLOR;
 let currentGridSize = DEFAULT_GRID_SIZE;
@@ -24,17 +24,13 @@ colorPicker.addEventListener("change", (e) => {
     penColor = e.target.value;
 }, false);
 
-// //grid lines on/off
-// const gridLines = document.querySelector("#checkbox");
-// gridLines.addEventListener("change", (e) => {
-//     if(e.target.value == 1) 
-//         GridLinesOn == true;
-//     else 
-//         GridLinesOn == false;
-//     deleteSquares();
-//     createSquares(currentGridSize);
-// })
-
+//grid lines on/off
+const gridLines = document.getElementById("check");
+gridLines.addEventListener("change", () => {
+    (!gridLines.checked)? gridLinesOn = Boolean(false): gridLinesOn = Boolean(true);
+    deleteSquares();
+    createSquares(currentGridSize);
+})
 
 //change num of squares
 const squaresNumber = document.querySelector("#gridSize");
@@ -55,7 +51,7 @@ function createSquares(currentSize){
     for(i=0; i<currentGridArea; i++){
         const square = document.createElement('div');
         square.classList.add("square"+i);
-        if(GridLinesOn) {square.style.border = BORDER_STYLE;}
+        if(gridLinesOn) {square.style.border = BORDER_STYLE;}
         gridContainer.appendChild(square);
             square.addEventListener("mouseenter", (e) => {
             // highlight the mouseenter target
