@@ -5,12 +5,10 @@ body{
     align-items: center;
 }
 .grid-container{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     border-style: solid; 
     width: 816px;
-    min-height: 816px;
-    padding: 5px;
+    height: 816px;
 }
 
 /* .square{
