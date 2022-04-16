@@ -9,7 +9,7 @@ let gridLinesOn = DEFAULT_GRID_LINES_ON;
 let penColor = DEFAULT_PEN_COLOR;
 let gridColor = DEFAULT_GRID_COLOR;
 let currentGridSize = DEFAULT_GRID_SIZE;
-let mode = "custom";//rainbow, grayscale, snake
+let mode = "rgb";//custom, rgb, grayscale, snake
 
 const body = document.querySelector('body');
 const gridContainer = document.createElement('div');
@@ -59,6 +59,9 @@ function createSquares(currentSize){
                 case("custom"):
                     e.target.style.backgroundColor = penColor;
                     break;
+                case ("rgb"):
+                    e.target.style.backgroundColor = getRandomColor();
+                    break;
                 case("snake"):
                     e.target.style.backgroundColor = penColor;
                     setTimeout(function() {
@@ -71,12 +74,12 @@ function createSquares(currentSize){
 }
 
 
-function rainbowColor(){
-
-}
-
 function deleteSquares(){
     gridContainer.innerHTML = "";
+}
+
+function getRandomColor(){
+   return "#"+Math.floor(Math.random()*16777215).toString(16);
 }
 
 //clear button setup
