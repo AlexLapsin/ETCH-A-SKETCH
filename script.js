@@ -9,7 +9,9 @@ let gridLinesOn = DEFAULT_GRID_LINES_ON;
 let penColor = DEFAULT_PEN_COLOR;
 let gridColor = DEFAULT_GRID_COLOR;
 let currentGridSize = DEFAULT_GRID_SIZE;
-let mode = "rgb";//custom, rgb, grayscale, snake
+let mode = "grayscale";//custom, rgb, grayscale, snake
+
+let rgb = [255,255,255];
 
 const body = document.querySelector('body');
 const gridContainer = document.createElement('div');
@@ -54,7 +56,8 @@ function createSquares(currentSize){
         square.classList.add("square"+i);
         if(gridLinesOn) {square.style.border = BORDER_STYLE;}
         gridContainer.appendChild(square);
-            square.addEventListener("mouseenter", (e) => {
+
+        square.addEventListener("mouseenter", (e) => {
             switch(mode){
                 case("custom"):
                     e.target.style.backgroundColor = penColor;
@@ -62,17 +65,28 @@ function createSquares(currentSize){
                 case ("rgb"):
                     e.target.style.backgroundColor = getRandomColor();
                     break;
+                case("grayscale"):
+                    e.target.style.backgroundColor = reduceRGB();
+                    break;
                 case("snake"):
                     e.target.style.backgroundColor = penColor;
                     setTimeout(function() {
                     e.target.style.backgroundColor = "";
                     }, 500);
             }
-
         }, false);
-    }
-}
+    };
+};
 
+function reduceRGB(){
+    let newValue = rgb[0] - rgb[0] * 0.1;
+    if(newValue>=0){
+        for(i=0; i<rgb.length; i++){
+            rgb[i] = newValue;
+        };
+    }
+    return `rgb(${rgb.join()})`;
+}
 
 function deleteSquares(){
     gridContainer.innerHTML = "";
@@ -95,5 +109,6 @@ function clearGrid(){
     squares.forEach(element => {
         element.style.backgroundColor = "white";
     });
+    rgb = [255,255,255];
 }
 
