@@ -9,9 +9,7 @@ let gridLinesOn = DEFAULT_GRID_LINES_ON;
 let penColor = DEFAULT_PEN_COLOR;
 let gridColor = DEFAULT_GRID_COLOR;
 let currentGridSize = DEFAULT_GRID_SIZE;
-let mode = "grayscale";//custom, rgb, grayscale, snake
-
-let rgb = [255,255,255];
+let mode = "snake";//custom, random, grayscale, snake
 
 const body = document.querySelector('body');
 const gridContainer = document.createElement('div');
@@ -57,36 +55,41 @@ function createSquares(currentSize){
         if(gridLinesOn) {square.style.border = BORDER_STYLE;}
         gridContainer.appendChild(square);
 
-        square.addEventListener("mouseenter", (e) => {
-            switch(mode){
-                case("custom"):
-                    e.target.style.backgroundColor = penColor;
-                    break;
-                case ("rgb"):
-                    e.target.style.backgroundColor = getRandomColor();
-                    break;
-                case("grayscale"):
-                    e.target.style.backgroundColor = reduceRGB();
-                    break;
-                case("snake"):
-                    e.target.style.backgroundColor = penColor;
-                    setTimeout(function() {
-                    e.target.style.backgroundColor = "";
-                    }, 500);
-            }
-        }, false);
+        square.addEventListener("mouseenter", drawGrid);
     };
 };
 
-function reduceRGB(){
-    let newValue = rgb[0] - rgb[0] * 0.1;
-    if(newValue>=0){
-        for(i=0; i<rgb.length; i++){
-            rgb[i] = newValue;
-        };
+function drawGrid(){
+    switch(mode){
+        case("custom"):
+            this.style.backgroundColor = penColor;
+            break;
+
+        case("random"):
+            this.style.backgroundColor = getRandomColor();
+            break;
+
+        case("grayscale"):
+            if (this.style.backgroundColor.match(/rgba/)) {
+                let currentOpacity = Number(this.style.backgroundColor.slice(-4, -1));
+                if (currentOpacity <= 0.9) {
+                    this.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity + 0.1})`;
+                }
+            } 
+            else if (this.style.backgroundColor == 'rgb(0, 0, 0)')
+                return;
+            else 
+                this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';  
+                break;
+
+        case("snake"):
+            this.style.backgroundColor = penColor;
+            setTimeout(()  => {
+                this.style.backgroundColor = "";
+            }, 500);
     }
-    return `rgb(${rgb.join()})`;
 }
+
 
 function deleteSquares(){
     gridContainer.innerHTML = "";
