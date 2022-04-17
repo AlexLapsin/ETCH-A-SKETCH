@@ -1,18 +1,42 @@
 
 const BORDER_STYLE = "0.01px solid";
 const DEFAULT_GRID_SIZE = 16;
-const DEFAULT_PEN_COLOR = "black";
+const DEFAULT_PEN_COLOR = "#33BEFF";
 const DEFAULT_GRID_COLOR = "";
 const DEFAULT_GRID_LINES_ON = new Boolean(true);
+const DEFAULT_MODE = "custom";//custom, random, grayscale, snake
 
 let gridLinesOn = DEFAULT_GRID_LINES_ON;
 let penColor = DEFAULT_PEN_COLOR;
 let gridColor = DEFAULT_GRID_COLOR;
 let currentGridSize = DEFAULT_GRID_SIZE;
-let mode = "snake";//custom, random, grayscale, snake
+let mode = DEFAULT_MODE;
 
 const body = document.querySelector('body');
 const gridContainer = document.createElement('div');
+
+
+//choose mode
+const customMode = document.getElementById("custom");
+customMode.addEventListener("click", (e) => {
+    mode = "custom";
+});
+
+const randomMode = document.getElementById("random");
+randomMode.addEventListener("click", (e) => {
+    mode = "random";
+});
+
+const grayscaleMode = document.getElementById("grayscale");
+grayscaleMode.addEventListener("click", (e) => {
+    mode = "grayscale";
+});
+
+const snakeMode = document.getElementById("snake");
+snakeMode.addEventListener("click", (e) => {
+    mode = "snake";
+});
+
 
 //create the gridContainer that stores the squares
 gridContainer.classList.add("grid-container");
@@ -20,6 +44,7 @@ body.appendChild(gridContainer);
 
 createSquares(currentGridSize);
 
+// color picker
 const colorPicker = document.querySelector("#square-color");
 colorPicker.addEventListener("change", (e) => {
     penColor = e.target.value;
@@ -80,7 +105,7 @@ function drawGrid(){
                 return;
             else 
                 this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';  
-                break;
+            break;
 
         case("snake"):
             this.style.backgroundColor = penColor;
@@ -108,10 +133,9 @@ clearBtn.addEventListener("click",() => {
 })
 
 function clearGrid(){
-    const squares = gridContainer.querySelectorAll('div');
+    const squares = gridContainer.querySelectorAll("div");
     squares.forEach(element => {
         element.style.backgroundColor = "white";
     });
-    rgb = [255,255,255];
 }
 
