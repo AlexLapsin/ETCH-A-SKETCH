@@ -4,6 +4,7 @@ body{
     justify-content: center;
     align-items: center;
 }
+
 .grid-container{
     display: grid;
     border-style: solid; 
