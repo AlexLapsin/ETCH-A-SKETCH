@@ -1,7 +1,8 @@
 
 const BORDER_STYLE = "thin solid";
 const DEFAULT_GRID_SIZE = 16;
-const DEFAULT_PEN_COLOR = "#33BEFF";
+const DEFAULT_PEN_COLOR = "black";
+const DEFAULT_GRID_BACKGROUND_COLOR = "rgba(255, 187, 0, 0.89)";
 const DEFAULT_GRID_LINES_ON = new Boolean(true);
 const DEFAULT_MODE = "custom";//custom, random, grayscale, snake
 
@@ -10,7 +11,7 @@ let penColor = DEFAULT_PEN_COLOR;
 let currentGridSize = DEFAULT_GRID_SIZE;
 let mode = DEFAULT_MODE;
 
-const body = document.querySelector("body");
+const body= document.querySelector("body");
 const gridContainer = document.createElement("div");
 gridContainer.classList.add("grid-container");
 body.appendChild(gridContainer);
@@ -83,7 +84,7 @@ function drawGrid(){
 function clearGrid(){
     const squares = gridContainer.querySelectorAll("div");
     squares.forEach(element => {
-        element.style.backgroundColor = "white";
+        element.style.backgroundColor = DEFAULT_GRID_BACKGROUND_COLOR;
     });
 }
 

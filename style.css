@@ -1,8 +1,40 @@
 body{
-    display: flex;
     height:100vh;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    text-align: center;
+    background-color: rgba(255, 187, 0, 0.89);
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 150px;
+}
+
+.title{
+    font-size: 48px;
+    margin: 8px;
+    padding: 12px;
+    color: #111; 
+    font-family: 'Helvetica Neue', sans-serif;  
+    font-weight: bold; 
+    letter-spacing: 1px; 
+    line-height: 1; 
+}
+
+.buttons-container{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    color: rgb(17, 17, 17);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+
 }
 
 .grid-container{
@@ -10,4 +42,5 @@ body{
     border-style: solid; 
     width: 816px;
     height: 816px;
+    align-self: center;
 }
