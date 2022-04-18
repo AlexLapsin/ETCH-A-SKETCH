@@ -31,9 +31,8 @@ body{
     flex-direction: column;
     gap: 50px;
     color: rgb(17, 17, 17);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 24px;
-    font-weight: bold;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
 
 }
 
@@ -44,3 +43,21 @@ body{
     height: 816px;
     align-self: center;
 }
+
+
+#clearButton {
+    transition-duration: 0.4s;
+    background-color: rgba(17, 17, 17, 0.90); 
+    color: rgb(255, 246, 246); 
+    border: 1px solid rgba(17, 17, 17, 0.90);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding: 10px;
+    font-size: 24px;
+  }
+  
+#clearButton:hover {
+    background-color: #f44336;
+    border-color: #f44336;
+    color: rgba(255, 187, 0, 0.89);
+  }

@@ -2,7 +2,7 @@
 const BORDER_STYLE = "thin solid";
 const DEFAULT_GRID_SIZE = 16;
 const DEFAULT_PEN_COLOR = "black";
-const DEFAULT_GRID_BACKGROUND_COLOR = "rgba(255, 187, 0, 0.89)";
+const DEFAULT_GRID_BACKGROUND_COLOR = "";
 const DEFAULT_GRID_LINES_ON = new Boolean(true);
 const DEFAULT_MODE = "custom";//custom, random, grayscale, snake
 
@@ -52,6 +52,7 @@ function createSquares(currentSize){
         gridContainer.appendChild(square);
         square.addEventListener("mouseenter", drawGrid);
     };
+    clearGrid();
 };
 
 function drawGrid(){
